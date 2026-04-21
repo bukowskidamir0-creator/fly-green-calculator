@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MVP-калькулятор Fly Green для оценки CO2 перелета и расчета климатического вклада.">
+    <meta property="og:title" content="Fly Green CO2 Calculator">
+    <meta property="og:description" content="Выберите самолет, укажите дистанцию и получите расчет CO2 на рейс и одного пассажира.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#17243d">
+    <title>Fly Green CO2 Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#calculator" aria-label="Fly Green Calculator">
+        <span class="brand-mark" aria-hidden="true">FG</span>
+        <span>
+          <strong>Fly Green</strong>
+          <small>Air Astana MVP</small>
+        </span>
+      </a>
+
+      <nav class="header-actions" aria-label="Навигация">
+        <a href="#method">Методика</a>
+        <a href="#impact">Вклад</a>
+        <button class="icon-button" id="copy-link" type="button" title="Скопировать ссылку">
+          <span aria-hidden="true">↗</span>
+          <span>Ссылка</span>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="calculator-hero" id="calculator" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Калькулятор CO2 перелета</p>
+          <h1 id="page-title">Оцените климатический след рейса</h1>
+          <p>
+            Выберите тип самолета и дистанцию. Модель рассчитает выбросы всего рейса,
+            долю одного пассажира и примерный вклад для Fly Green.
+          </p>
+        </div>
+
+        <div class="flight-visual" aria-hidden="true">
+          <svg viewBox="0 0 760 260">
+            <defs>
+              <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#e6f5f0"></stop>
+                <stop offset="52%" stop-color="#f7fbff"></stop>
+                <stop offset="100%" stop-color="#fff3df"></stop>
+              </linearGradient>
+            </defs>
+            <rect width="760" height="260" rx="8" fill="url(#sky)"></rect>
+            <path d="M0 198 C118 155 236 187 347 145 C482 94 589 134 760 91 L760 260 L0 260 Z" fill="#b9dfcc"></path>
+            <path d="M0 224 C126 176 252 210 375 166 C514 116 622 172 760 132 L760 260 L0 260 Z" fill="#74ae6b"></path>
+            <path d="M84 134 C213 60 437 54 651 126" fill="none" stroke="#1f8050" stroke-width="4" stroke-dasharray="10 14" stroke-linecap="round"></path>
+            <g transform="translate(402 70) rotate(13)">
+              <path d="M9 50 L198 50 C220 50 232 61 232 73 C232 85 220 94 198 94 L9 94 C-10 94 -18 83 -18 72 C-18 61 -10 50 9 50 Z" fill="#17243d"></path>
+              <path d="M70 48 L123 7 C132 0 142 6 139 17 L130 50 Z" fill="#223153"></path>
+              <path d="M76 95 L134 144 C142 151 137 163 126 159 L67 95 Z" fill="#223153"></path>
+              <path d="M200 56 L260 31 C273 25 282 37 271 47 L226 84 Z" fill="#17243d"></path>
+              <circle cx="31" cy="72" r="8" fill="#c49a58"></circle>
+              <circle cx="62" cy="72" r="8" fill="#c49a58"></circle>
+              <circle cx="93" cy="72" r="8" fill="#c49a58"></circle>
+              <circle cx="124" cy="72" r="8" fill="#c49a58"></circle>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <section class="calculator-layout" aria-label="CO2 calculator form and result">
+        <form class="calculator-form" id="calculator-form">
+          <div class="form-header">
+            <div>
+              <p class="eyebrow">Параметры рейса</p>
+              <h2>Данные для расчета</h2>
+            </div>
+            <span class="model-badge">MVP model</span>
+          </div>
+
+          <label class="field" for="distance">
+            <span>Дистанция полета</span>
+            <span class="input-unit">
+              <input id="distance" name="distance" type="number" min="1" step="1" value="950" inputmode="numeric">
+              <span>км</span>
+            </span>
+          </label>
+
+          <fieldset class="aircraft-list">
+            <legend>Тип самолета</legend>
+            <label class="aircraft-option">
+              <input type="radio" name="aircraft" value="e190e2" checked>
+              <span class="plane-symbol" aria-hidden="true"></span>
+              <span class="aircraft-text">
+                <strong>Embraer E190-E2</strong>
+                <small>6.5 кг CO2/км · 108 мест</small>
+              </span>
+            </label>
+            <label class="aircraft-option">
+              <input type="radio" name="aircraft" value="a320neo">
+              <span class="plane-symbol" aria-hidden="true"></span>
+              <span class="aircraft-text">
+                <strong>Airbus A320neo</strong>
+                <small>9.0 кг CO2/км · 180 мест</small>
+              </span>
+            </label>
+            <label class="aircraft-option">
+              <input type="radio" name="aircraft" value="a321neo">
+              <span class="plane-symbol" aria-hidden="true"></span>
+              <span class="aircraft-text">
+                <strong>Airbus A321neo</strong>
+                <small>11.5 кг CO2/км · 220 мест</small>
+              </span>
+            </label>
+            <label class="aircraft-option">
+              <input type="radio" name="aircraft" value="b767">
+              <span class="plane-symbol wide" aria-hidden="true"></span>
+              <span class="aircraft-text">
+                <strong>Boeing 767-300ER</strong>
+                <small>21.0 кг CO2/км · 223 места</small>
+              </span>
+            </label>
+          </fieldset>
+
+          <label class="range-field" for="load-factor">
+            <span>Загрузка салона</span>
+            <output id="load-factor-output" for="load-factor">85%</output>
+            <input id="load-factor" name="loadFactor" type="range" min="50" max="100" value="85">
+          </label>
+        </form>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-main">
+            <p class="eyebrow">Оценка на пассажира</p>
+            <strong id="passenger-co2">0 кг CO2</strong>
+            <span>Economy · passenger share 90%</span>
+          </div>
+
+          <div class="metrics">
+            <div>
+              <span>Весь рейс</span>
+              <strong id="flight-co2">0 т CO2</strong>
+            </div>
+            <div>
+              <span>Расчетная дистанция</span>
+              <strong id="adjusted-distance">0 км</strong>
+            </div>
+            <div>
+              <span>Ожидаемо пассажиров</span>
+              <strong id="expected-passengers">0</strong>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button class="primary-button" id="copy-summary" type="button">
+              <span aria-hidden="true">✓</span>
+              <span>Копировать расчет</span>
+            </button>
+          </div>
+
+          <p class="model-note" id="model-note">
+            Модель учитывает CO2/км, поправку маршрута, взлет/посадку, долю пассажиров и загрузку салона.
+          </p>
+        </aside>
+      </section>
+
+      <section class="impact-section" id="impact" aria-labelledby="impact-title">
+        <div class="section-heading">
+          <p class="eyebrow">Fly Green вклад</p>
+          <h2 id="impact-title">Пакеты для пассажира</h2>
+        </div>
+
+        <div class="donation-grid">
+          <article class="donation-card">
+            <span>Light</span>
+            <strong id="light-price">0 KZT</strong>
+            <p>Около 30% расчетного следа</p>
+          </article>
+          <article class="donation-card featured">
+            <span>Balance</span>
+            <strong id="balance-price">0 KZT</strong>
+            <p>100% расчетного следа рейса</p>
+          </article>
+          <article class="donation-card">
+            <span>Green+</span>
+            <strong id="green-price">0 KZT</strong>
+            <p>100% + вклад в локальную природу</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="method-section" id="method" aria-labelledby="method-title">
+        <div class="section-heading">
+          <p class="eyebrow">Методика</p>
+          <h2 id="method-title">Что считает модель</h2>
+        </div>
+
+        <div class="method-grid">
+          <div>
+            <strong>1. Дистанция</strong>
+            <p>Введенная дистанция умножается на 1.07, чтобы учесть реальный маршрут, обходы и заход на посадку.</p>
+          </div>
+          <div>
+            <strong>2. Самолет</strong>
+            <p>Для каждого типа задана оценка CO2 на километр, вместимость и дополнительный блок LTO для взлета и посадки.</p>
+          </div>
+          <div>
+            <strong>3. Пассажир</strong>
+            <p>Выбросы рейса распределяются на ожидаемое число пассажиров с учетом загрузки салона и доли пассажирского веса.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Fly Green Calculator</span>
+      <span>Climate contribution MVP · Kazakhstan</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
