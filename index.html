@@ -123,10 +123,13 @@
             </label>
           </fieldset>
 
-          <label class="range-field" for="load-factor">
-            <span>Cabin load factor</span>
-            <output id="load-factor-output" for="load-factor">85%</output>
-            <input id="load-factor" name="loadFactor" type="range" min="50" max="100" value="85">
+          <label class="field passenger-field" for="passenger-count">
+            <span>Passengers on board</span>
+            <span class="input-unit">
+              <input id="passenger-count" name="passengerCount" type="number" min="1" step="1" value="92" inputmode="numeric">
+              <span>people</span>
+            </span>
+            <small id="capacity-note">Aircraft capacity: 108 seats</small>
           </label>
         </form>
 
@@ -147,7 +150,7 @@
               <strong id="adjusted-distance">0 km</strong>
             </div>
             <div>
-              <span>Expected passengers</span>
+              <span>Passengers entered</span>
               <strong id="expected-passengers">0</strong>
             </div>
           </div>
@@ -160,7 +163,7 @@
           </div>
 
           <p class="model-note" id="model-note">
-            The model uses CO2 per km, route correction, landing/takeoff emissions, passenger share, and cabin load factor.
+            The model uses CO2 per km, route correction, landing/takeoff emissions, passenger share, and the entered passenger count.
           </p>
         </aside>
       </section>
@@ -168,25 +171,33 @@
       <section class="impact-section" id="impact" aria-labelledby="impact-title">
         <div class="section-heading">
           <p class="eyebrow">Fly Green contribution</p>
-          <h2 id="impact-title">Passenger packages</h2>
+          <h2 id="impact-title">Manual contribution</h2>
         </div>
 
-        <div class="donation-grid">
-          <article class="donation-card">
-            <span>Light</span>
-            <strong id="light-price">0 KZT</strong>
-            <p>About 30% of the estimated footprint</p>
-          </article>
-          <article class="donation-card featured">
-            <span>Balance</span>
-            <strong id="balance-price">0 KZT</strong>
-            <p>100% of the estimated flight footprint</p>
-          </article>
-          <article class="donation-card">
-            <span>Green+</span>
-            <strong id="green-price">0 KZT</strong>
-            <p>100% + local nature contribution</p>
-          </article>
+        <div class="manual-donation-card">
+          <label class="field donation-field" for="donation-usd">
+            <span>Donation amount</span>
+            <span class="input-unit">
+              <input id="donation-usd" name="donationUsd" type="number" min="1" step="1" value="1" inputmode="decimal">
+              <span>USD</span>
+            </span>
+            <small>Minimum online contribution: $1.</small>
+          </label>
+
+          <div class="donation-summary">
+            <div>
+              <span>KZT equivalent</span>
+              <strong id="donation-kzt">0 KZT</strong>
+            </div>
+            <div>
+              <span>Estimated coverage</span>
+              <strong id="donation-coverage">0%</strong>
+            </div>
+            <div>
+              <span>Suggested 100%</span>
+              <strong id="suggested-balance-usd">$0</strong>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -207,7 +218,7 @@
           </div>
           <div>
             <strong>3. Passenger</strong>
-            <p>Flight emissions are allocated across expected passengers using cabin load factor and passenger weight share.</p>
+            <p>Flight emissions are allocated across the entered number of passengers using passenger weight share.</p>
           </div>
         </div>
       </section>

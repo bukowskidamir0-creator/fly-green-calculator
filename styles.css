@@ -373,6 +373,13 @@ h2 {
   accent-color: var(--gold);
 }
 
+.passenger-field small,
+.donation-field small {
+  color: var(--muted);
+  font-size: .9rem;
+  font-weight: 700;
+}
+
 .result-panel {
   min-width: 0;
   padding: 18px;
@@ -492,10 +499,54 @@ h2 {
 }
 
 .donation-card,
+.manual-donation-card,
 .method-grid div {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, .90);
+}
+
+.manual-donation-card {
+  margin-top: 20px;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: minmax(260px, .7fr) 1fr;
+  gap: 18px;
+  align-items: end;
+}
+
+.donation-field {
+  margin-top: 0;
+}
+
+.donation-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.donation-summary div {
+  min-height: 96px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--soft);
+}
+
+.donation-summary span {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.donation-summary strong {
+  color: var(--ink);
+  font-size: clamp(1.35rem, 3vw, 2rem);
 }
 
 .donation-card {
@@ -570,7 +621,12 @@ h2 {
   }
 
   .donation-grid,
-  .method-grid {
+  .method-grid,
+  .manual-donation-card {
+    grid-template-columns: 1fr;
+  }
+
+  .donation-summary {
     grid-template-columns: 1fr;
   }
 }
