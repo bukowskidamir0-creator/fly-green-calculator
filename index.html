@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MVP-калькулятор Fly Green для оценки CO2 перелета и расчета климатического вклада.">
+    <meta name="description" content="Fly Green MVP calculator for estimating flight CO2 emissions and climate contribution packages.">
     <meta property="og:title" content="Fly Green CO2 Calculator">
-    <meta property="og:description" content="Выберите самолет, укажите дистанцию и получите расчет CO2 на рейс и одного пассажира.">
+    <meta property="og:description" content="Choose an aircraft, enter flight distance, and estimate CO2 emissions for the flight and one passenger.">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#17243d">
     <title>Fly Green CO2 Calculator</title>
@@ -21,12 +21,12 @@
         </span>
       </a>
 
-      <nav class="header-actions" aria-label="Навигация">
-        <a href="#method">Методика</a>
-        <a href="#impact">Вклад</a>
-        <button class="icon-button" id="copy-link" type="button" title="Скопировать ссылку">
+      <nav class="header-actions" aria-label="Navigation">
+        <a href="#method">Method</a>
+        <a href="#impact">Impact</a>
+        <button class="icon-button" id="copy-link" type="button" title="Copy link">
           <span aria-hidden="true">↗</span>
-          <span>Ссылка</span>
+          <span>Link</span>
         </button>
       </nav>
     </header>
@@ -34,11 +34,11 @@
     <main>
       <section class="calculator-hero" id="calculator" aria-labelledby="page-title">
         <div class="hero-copy">
-          <p class="eyebrow">Калькулятор CO2 перелета</p>
-          <h1 id="page-title">Оцените климатический след рейса</h1>
+          <p class="eyebrow">Flight CO2 calculator</p>
+          <h1 id="page-title">Estimate a flight's climate footprint</h1>
           <p>
-            Выберите тип самолета и дистанцию. Модель рассчитает выбросы всего рейса,
-            долю одного пассажира и примерный вклад для Fly Green.
+            Choose an aircraft type and flight distance. The model estimates total flight
+            emissions, one passenger's share, and a Fly Green contribution package.
           </p>
         </div>
 
@@ -73,28 +73,28 @@
         <form class="calculator-form" id="calculator-form">
           <div class="form-header">
             <div>
-              <p class="eyebrow">Параметры рейса</p>
-              <h2>Данные для расчета</h2>
+              <p class="eyebrow">Flight inputs</p>
+              <h2>Calculation data</h2>
             </div>
             <span class="model-badge">MVP model</span>
           </div>
 
           <label class="field" for="distance">
-            <span>Дистанция полета</span>
+            <span>Flight distance</span>
             <span class="input-unit">
               <input id="distance" name="distance" type="number" min="1" step="1" value="950" inputmode="numeric">
-              <span>км</span>
+              <span>km</span>
             </span>
           </label>
 
           <fieldset class="aircraft-list">
-            <legend>Тип самолета</legend>
+            <legend>Aircraft type</legend>
             <label class="aircraft-option">
               <input type="radio" name="aircraft" value="e190e2" checked>
               <span class="plane-symbol" aria-hidden="true"></span>
               <span class="aircraft-text">
                 <strong>Embraer E190-E2</strong>
-                <small>6.5 кг CO2/км · 108 мест</small>
+                <small>6.5 kg CO2/km · 108 seats</small>
               </span>
             </label>
             <label class="aircraft-option">
@@ -102,7 +102,7 @@
               <span class="plane-symbol" aria-hidden="true"></span>
               <span class="aircraft-text">
                 <strong>Airbus A320neo</strong>
-                <small>9.0 кг CO2/км · 180 мест</small>
+                <small>9.0 kg CO2/km · 180 seats</small>
               </span>
             </label>
             <label class="aircraft-option">
@@ -110,7 +110,7 @@
               <span class="plane-symbol" aria-hidden="true"></span>
               <span class="aircraft-text">
                 <strong>Airbus A321neo</strong>
-                <small>11.5 кг CO2/км · 220 мест</small>
+                <small>11.5 kg CO2/km · 220 seats</small>
               </span>
             </label>
             <label class="aircraft-option">
@@ -118,13 +118,13 @@
               <span class="plane-symbol wide" aria-hidden="true"></span>
               <span class="aircraft-text">
                 <strong>Boeing 767-300ER</strong>
-                <small>21.0 кг CO2/км · 223 места</small>
+                <small>21.0 kg CO2/km · 223 seats</small>
               </span>
             </label>
           </fieldset>
 
           <label class="range-field" for="load-factor">
-            <span>Загрузка салона</span>
+            <span>Cabin load factor</span>
             <output id="load-factor-output" for="load-factor">85%</output>
             <input id="load-factor" name="loadFactor" type="range" min="50" max="100" value="85">
           </label>
@@ -132,22 +132,22 @@
 
         <aside class="result-panel" aria-live="polite">
           <div class="result-main">
-            <p class="eyebrow">Оценка на пассажира</p>
-            <strong id="passenger-co2">0 кг CO2</strong>
+            <p class="eyebrow">Passenger estimate</p>
+            <strong id="passenger-co2">0 kg CO2</strong>
             <span>Economy · passenger share 90%</span>
           </div>
 
           <div class="metrics">
             <div>
-              <span>Весь рейс</span>
-              <strong id="flight-co2">0 т CO2</strong>
+              <span>Total flight</span>
+              <strong id="flight-co2">0 t CO2</strong>
             </div>
             <div>
-              <span>Расчетная дистанция</span>
-              <strong id="adjusted-distance">0 км</strong>
+              <span>Adjusted distance</span>
+              <strong id="adjusted-distance">0 km</strong>
             </div>
             <div>
-              <span>Ожидаемо пассажиров</span>
+              <span>Expected passengers</span>
               <strong id="expected-passengers">0</strong>
             </div>
           </div>
@@ -155,59 +155,59 @@
           <div class="result-actions">
             <button class="primary-button" id="copy-summary" type="button">
               <span aria-hidden="true">✓</span>
-              <span>Копировать расчет</span>
+              <span>Copy estimate</span>
             </button>
           </div>
 
           <p class="model-note" id="model-note">
-            Модель учитывает CO2/км, поправку маршрута, взлет/посадку, долю пассажиров и загрузку салона.
+            The model uses CO2 per km, route correction, landing/takeoff emissions, passenger share, and cabin load factor.
           </p>
         </aside>
       </section>
 
       <section class="impact-section" id="impact" aria-labelledby="impact-title">
         <div class="section-heading">
-          <p class="eyebrow">Fly Green вклад</p>
-          <h2 id="impact-title">Пакеты для пассажира</h2>
+          <p class="eyebrow">Fly Green contribution</p>
+          <h2 id="impact-title">Passenger packages</h2>
         </div>
 
         <div class="donation-grid">
           <article class="donation-card">
             <span>Light</span>
             <strong id="light-price">0 KZT</strong>
-            <p>Около 30% расчетного следа</p>
+            <p>About 30% of the estimated footprint</p>
           </article>
           <article class="donation-card featured">
             <span>Balance</span>
             <strong id="balance-price">0 KZT</strong>
-            <p>100% расчетного следа рейса</p>
+            <p>100% of the estimated flight footprint</p>
           </article>
           <article class="donation-card">
             <span>Green+</span>
             <strong id="green-price">0 KZT</strong>
-            <p>100% + вклад в локальную природу</p>
+            <p>100% + local nature contribution</p>
           </article>
         </div>
       </section>
 
       <section class="method-section" id="method" aria-labelledby="method-title">
         <div class="section-heading">
-          <p class="eyebrow">Методика</p>
-          <h2 id="method-title">Что считает модель</h2>
+          <p class="eyebrow">Methodology</p>
+          <h2 id="method-title">What the model calculates</h2>
         </div>
 
         <div class="method-grid">
           <div>
-            <strong>1. Дистанция</strong>
-            <p>Введенная дистанция умножается на 1.07, чтобы учесть реальный маршрут, обходы и заход на посадку.</p>
+            <strong>1. Distance</strong>
+            <p>The entered distance is multiplied by 1.07 to account for routing, diversions, and approach patterns.</p>
           </div>
           <div>
-            <strong>2. Самолет</strong>
-            <p>Для каждого типа задана оценка CO2 на километр, вместимость и дополнительный блок LTO для взлета и посадки.</p>
+            <strong>2. Aircraft</strong>
+            <p>Each aircraft type has an estimated CO2 per kilometer, seat count, and an additional LTO block for landing and takeoff.</p>
           </div>
           <div>
-            <strong>3. Пассажир</strong>
-            <p>Выбросы рейса распределяются на ожидаемое число пассажиров с учетом загрузки салона и доли пассажирского веса.</p>
+            <strong>3. Passenger</strong>
+            <p>Flight emissions are allocated across expected passengers using cabin load factor and passenger weight share.</p>
           </div>
         </div>
       </section>

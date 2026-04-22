@@ -75,14 +75,14 @@ function calculate() {
   const greenPrice = roundToNearest(balancePrice * 2.33, 100);
 
   loadFactorOutput.textContent = `${loadFactorInput.value}%`;
-  passengerCO2Output.textContent = `${numberFormat.format(Math.round(passengerCO2Kg))} кг CO2`;
-  flightCO2Output.textContent = `${numberFormat.format((flightCO2Kg / 1000).toFixed(1))} т CO2`;
-  adjustedDistanceOutput.textContent = `${numberFormat.format(Math.round(adjustedDistance))} км`;
+  passengerCO2Output.textContent = `${numberFormat.format(Math.round(passengerCO2Kg))} kg CO2`;
+  flightCO2Output.textContent = `${numberFormat.format((flightCO2Kg / 1000).toFixed(1))} t CO2`;
+  adjustedDistanceOutput.textContent = `${numberFormat.format(Math.round(adjustedDistance))} km`;
   expectedPassengersOutput.textContent = `${numberFormat.format(Math.round(expectedPassengers))}`;
   lightPriceOutput.textContent = formatKzt(lightPrice);
   balancePriceOutput.textContent = formatKzt(balancePrice);
   greenPriceOutput.textContent = formatKzt(greenPrice);
-  modelNote.textContent = `${aircraft.label}: ${aircraft.co2KgPerKm} кг CO2/км, LTO ${numberFormat.format(aircraft.ltoCO2Kg)} кг, доля пассажиров ${Math.round(passengerShare * 100)}%.`;
+  modelNote.textContent = `${aircraft.label}: ${aircraft.co2KgPerKm} kg CO2/km, LTO ${numberFormat.format(aircraft.ltoCO2Kg)} kg, passenger share ${Math.round(passengerShare * 100)}%.`;
 
   updateUrlState(distanceKm, getSelectedAircraftInput().value, loadFactorInput.value);
 
@@ -104,11 +104,11 @@ function getSummaryText() {
 
   return [
     "Fly Green CO2 Calculator",
-    `Самолет: ${result.aircraft.label}`,
-    `Дистанция: ${Math.round(result.distanceKm)} км`,
-    `Расчетная дистанция: ${Math.round(result.adjustedDistance)} км`,
-    `CO2 рейса: ${Math.round(result.flightCO2Kg)} кг`,
-    `CO2 пассажира: ${Math.round(result.passengerCO2Kg)} кг`,
+    `Aircraft: ${result.aircraft.label}`,
+    `Distance: ${Math.round(result.distanceKm)} km`,
+    `Adjusted distance: ${Math.round(result.adjustedDistance)} km`,
+    `Flight CO2: ${Math.round(result.flightCO2Kg)} kg`,
+    `Passenger CO2: ${Math.round(result.passengerCO2Kg)} kg`,
     `Light: ${formatKzt(result.lightPrice)}`,
     `Balance: ${formatKzt(result.balancePrice)}`,
     `Green+: ${formatKzt(result.greenPrice)}`,
@@ -126,12 +126,12 @@ async function copyToClipboard(text) {
 
 async function copySummary() {
   await copyToClipboard(getSummaryText());
-  flashButton(copyButton, "Скопировано", "Копировать расчет");
+  flashButton(copyButton, "Copied", "Copy estimate");
 }
 
 async function copyShareLink() {
   await copyToClipboard(window.location.href);
-  flashButton(copyLinkButton, "Готово", "Ссылка");
+  flashButton(copyLinkButton, "Copied", "Link");
 }
 
 function fallbackCopy(text) {
